@@ -10,6 +10,7 @@ var port = 3000;
 // Call on Express
 var app = express();
 
+// Morgan logs the HTTP requests to the console
 app.use(morgan('dev'));
 
 // Determine where to serve static files
