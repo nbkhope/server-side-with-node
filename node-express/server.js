@@ -1,7 +1,7 @@
 // Require node modules
 var express = require('express');
-// Morgan middleware
 var morgan = require('morgan');
+var bodyParser = require('body-parser');
 
 // Server settings
 var hostname = 'localhost';
@@ -12,6 +12,47 @@ var app = express();
 
 // Morgan logs the HTTP requests to the console
 app.use(morgan('dev'));
+
+// Convert data coming in as JSON to a JavaScript object
+app.use(bodyParser.json());
+
+// Gets called for each of the routes pertaining to /dishes
+app.all('/dishes', function(req, res, next) {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+
+  next();
+});
+
+// Retrieves all the dishes
+app.get('/dishes', function(req, res, next) {
+  res.end('Here are all the dishes!');
+});
+
+// Create a new dish
+app.post('/dishes', function(req, res, next) {
+  res.end('We will add the dish: ' + req.body.name + ' with details: ' + req.body.description);
+});
+
+// Delete all the dishes
+app.delete('/dishes', function(req, res, next) {
+  res.end('Deleting all the dishes...');
+});
+
+// Retrieve a specific dish
+app.get('/dishes/:dishId', function(req, res, next) {
+  res.end('Here are the details of the dish: [id: ' + req.params.dishId + "]");
+});
+
+// Update a dish
+app.put('/dishes/:dishId', function(req, res, next) {
+  res.write('Updating dish #' + req.params.dishId + "\n");
+  res.end("We will update the dish: " + req.body.name + ' with details: ' + req.body.description);
+});
+
+// Delete a specific dish
+app.delete('/dishes/:dishId', function(req, res, next) {
+  res.end('Deleting dish #' +req.params.dishId);
+});
 
 // Determine where to serve static files
 app.use(express.static(__dirname + '/public'));
