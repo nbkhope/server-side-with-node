@@ -18,8 +18,10 @@ var dishRouter = require('./dishRouter');
 var promoRouter = require('./promoRouter');
 var leaderRouter = require('./leaderRouter');
 
-// Apply the dishRouter to anything to do with /dishes
+// Apply the routers
 app.use('/dishes', dishRouter);
+app.use('/promotions', promoRouter);
+app.use('/leadership', leaderRouter);
 
 // Determine where to serve static files
 app.use(express.static(__dirname + '/public'));
