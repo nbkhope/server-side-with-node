@@ -13,7 +13,7 @@ var dishSchema = new Schema({
     type: String,
     required: true,
   },
-}, {timestamps: true});
+}, {timestamps: true}); // `timestamps` adds createdAt and updatedAt fields
 
 // Create a model that uses the schema
 var Dishes = mongoose.model('Dish', dishSchema);
