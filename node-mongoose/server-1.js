@@ -28,12 +28,14 @@ db.once('open', function() {
       throw err;
     }
 
+    // Retrieve all the dishes
     Dishes.find({}, function(err, dishes) {
       if (err) {
         throw err;
       }
 
       console.log(dishes);
+
       // Drop all the records and close the connection to the db
       db.collection('dishes').drop(function() {
         db.close();
