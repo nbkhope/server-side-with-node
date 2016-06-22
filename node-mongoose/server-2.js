@@ -45,7 +45,9 @@ db.once('open', function() {
         console.log("Updated a dish: ");
         console.log(dish);
 
-        db.collection('dishes').drop()
+        db.collection('dishes').drop(function() {
+          db.close();
+        });
       });
     }, 3000);
 
