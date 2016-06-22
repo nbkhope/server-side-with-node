@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     assert = require('assert');
 
 // Require the dishes model
-var Dishes = require('./models/dishes-1');
+var Dishes = require('./models/dishes-3');
 
 // Connection URL
 var url = 'mongodb://localhost:27017/conFusion';
@@ -69,7 +69,7 @@ db.once('open', function() {
             db.close();
           });
         });
-        
+
       });
     }, 3000);
 
